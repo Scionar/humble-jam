@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
-import { Layout } from '../components/common'
 import { MetaData } from '../components/common/meta'
+import { LayoutContainer } from '../containers'
 
 /**
 * Single post view (/:slug)
@@ -21,7 +21,7 @@ const Post = ({ data, location }) => {
                     location={location}
                     type="article"
                 />
-                <Layout>
+                <LayoutContainer>
                     <div className="container">
                         <article className="content">
                             { post.feature_image ?
@@ -39,7 +39,7 @@ const Post = ({ data, location }) => {
                             </section>
                         </article>
                     </div>
-                </Layout>
+                </LayoutContainer>
             </>
     )
 }

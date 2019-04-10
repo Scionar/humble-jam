@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
-import { Layout, PostCard, Pagination } from '../components/common'
+import { PostCard, Pagination } from '../components/common'
 import { MetaData } from '../components/common/meta'
+import { LayoutContainer } from '../containers'
 
 /**
 * Tag page (/tag/:slug)
@@ -22,7 +23,7 @@ const Tag = ({ data, location, pageContext }) => {
                 location={location}
                 type="series"
             />
-            <Layout>
+            <LayoutContainer>
                 <div className="container">
                     <header className="tag-header">
                         <h1>{tag.name}</h1>
@@ -36,7 +37,7 @@ const Tag = ({ data, location, pageContext }) => {
                     </section>
                     <Pagination pageContext={pageContext} />
                 </div>
-            </Layout>
+            </LayoutContainer>
         </>
     )
 }

@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
-import { Layout, PostCard, Pagination } from '../components/common'
+import { PostCard, Pagination } from '../components/common'
 import { MetaData } from '../components/common/meta'
+import { LayoutContainer } from '../containers'
 
 /**
 * Main index page (home page)
@@ -19,7 +20,7 @@ const Index = ({ data, location, pageContext }) => {
     return (
         <>
             <MetaData location={location} />
-            <Layout isHome={true}>
+            <LayoutContainer isHome={true}>
                 <div className="container">
                     <section className="post-feed">
                         {posts.map(({ node }) => (
@@ -29,7 +30,7 @@ const Index = ({ data, location, pageContext }) => {
                     </section>
                     <Pagination pageContext={pageContext} />
                 </div>
-            </Layout>
+            </LayoutContainer>
         </>
     )
 }

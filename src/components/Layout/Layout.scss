@@ -1,0 +1,11 @@
+@import '../../styles/variables';
+
+.layout {
+  margin: 4rem 0 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.layout__content {
+  @include content-wrapper();
+}
