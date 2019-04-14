@@ -4,7 +4,7 @@ import { StaticQuery, graphql } from "gatsby"
 import Helmet from "react-helmet"
 
 import { Layout } from "../components"
-import { HeaderContainer } from "."
+import { HeaderContainer, FooterContainer } from "."
 
 const LayoutContainer = ({ data, children, isHome }) => {
     const site = data.allGhostSettings.edges[0].node
@@ -15,7 +15,7 @@ const LayoutContainer = ({ data, children, isHome }) => {
             </Helmet>
             <Layout
                 header={<HeaderContainer isHome={isHome} />}
-                footer={<div />}
+                footer={<FooterContainer />}
             >
                 {children}
             </Layout>
