@@ -1,4 +1,6 @@
 /* eslint-disable */
+import Prism from "prismjs"
+
 /**
  * Trust All Scripts
  *
@@ -27,6 +29,14 @@ var trustAllScripts = function () {
     }
 };
 
-exports.onRouteUpdate = function () {
+/*
+ * NOTICE: ES6 module exports are not officially supported because of NodeJs
+ * https://github.com/gatsbyjs/gatsby/pull/9239
+ *
+ * ES6 modules are here used because PrismJS should not work with CommonJs.
+ */
+
+export const onRouteUpdate = () => {
     trustAllScripts();
-};
+    Prism.highlightAll();
+}
