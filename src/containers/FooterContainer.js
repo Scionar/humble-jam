@@ -13,7 +13,7 @@ const FooterContainer = ({ data }) => {
         ? `https://www.facebook.com/${site.facebook.replace(/^\//, ``)}`
         : null
     const rssUrl = `https://feedly.com/i/subscription/feed/${site.url}/rss/`
-    const currentYear = new Date().getFullYear()
+    const currentYear = new Date().getFullYear().toString()
 
     return (
         <Footer

@@ -24,8 +24,6 @@ HeaderContainer.defaultProps = {
 }
 
 HeaderContainer.propTypes = {
-    children: PropTypes.node.isRequired,
-    bodyClass: PropTypes.string,
     isHome: PropTypes.bool,
     data: PropTypes.shape({
         allGhostSettings: PropTypes.object.isRequired,

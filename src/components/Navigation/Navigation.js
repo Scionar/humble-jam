@@ -15,7 +15,7 @@ const Navigation = ({ data }) => (
             {data.map((navItem, i) => {
                 if (navItem.url.match(/^\s?http(s?)/gi)) {
                     return (
-                        <li className="navigation__item">
+                        <li className="navigation__item" key={i}>
                             <a
                                 className="navigation__item-link"
                                 href={navItem.url}
@@ -29,11 +29,10 @@ const Navigation = ({ data }) => (
                     )
                 } else {
                     return (
-                        <li className="navigation__item">
+                        <li className="navigation__item" key={i}>
                             <Link
                                 className="navigation__item-link"
                                 to={navItem.url}
-                                key={i}
                             >
                                 {navItem.label}
                             </Link>
