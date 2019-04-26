@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 
 import { MetaData } from "../components/common/meta"
-import { FullPost, PostDate, PostHeroImage, PostContent } from "../components"
+import { PostDate, PostHeroImage, PostContent } from "../components"
 import { LayoutContainer } from "../containers"
 
 /**
@@ -22,7 +22,7 @@ const Post = ({ data, location }) => {
                 <PostDate date={post.published_at} />
                 <h1>{post.title}</h1>
                 <PostHeroImage url={post.feature_image} alt={post.title} />
-                <PostContent html={post.html}></PostContent>
+                <PostContent html={post.html} />
             </LayoutContainer>
         </>
     )
