@@ -6,7 +6,7 @@ import "./PostDate.scss"
 
 const PostDate = ({ date }) => (
     <time className="post-date" dateTime={moment(date).format(`YYYY-MM-DD`)}>
-        {moment(date).format(`MMMM DD, YYYY`)}
+        {moment(date).format(`DD MMMM, YYYY`)}
     </time>
 )
 
