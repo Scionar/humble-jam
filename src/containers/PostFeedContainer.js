@@ -33,12 +33,9 @@ const PostFeedContainer = ({ data }) => {
 }
 
 PostFeedContainer.propTypes = {
-    children: PropTypes.node.isRequired,
     bodyClass: PropTypes.string,
     isHome: PropTypes.bool,
-    data: PropTypes.shape({
-        allGhostSettings: PropTypes.object.isRequired,
-    }).isRequired,
+    data: PropTypes.object.isRequired,
 }
 
 const PostFeedContainerQuery = props => (
