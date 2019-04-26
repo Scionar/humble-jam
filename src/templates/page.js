@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
 import { MetaData } from '../components/common/meta'
+import { PostDate, PostHeroImage, PostContent } from "../components"
 import { LayoutContainer } from '../containers'
 
 /**
@@ -22,17 +23,10 @@ const Page = ({ data, location }) => {
                 type="website"
             />
             <LayoutContainer>
-                <div className="container">
-                    <article className="content">
-                        <h1 className="content-title">{page.title}</h1>
-
-                        {/* The main page content */}
-                        <section
-                            className="content-body load-external-scripts"
-                            dangerouslySetInnerHTML={{ __html: page.html }}
-                        />
-                    </article>
-                </div>
+                <PostDate date={page.published_at} />
+                <h1>{page.title}</h1>
+                <PostHeroImage url={page.feature_image} alt={page.title} />
+                <PostContent html={page.html} />
             </LayoutContainer>
         </>
     )
@@ -41,6 +35,7 @@ const Page = ({ data, location }) => {
 Page.propTypes = {
     data: PropTypes.shape({
         ghostPage: PropTypes.shape({
+            published_at: PropTypes.string.isRequired,
             title: PropTypes.string.isRequired,
             html: PropTypes.string.isRequired,
             feature_image: PropTypes.string,
