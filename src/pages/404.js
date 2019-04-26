@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Layout } from '../components/common'
+import { LayoutContainer } from '../containers'
 
 const NotFoundPage = () => (
-    <Layout>
+    <LayoutContainer>
         <div className="container">
             <article className="content" style={{ textAlign: `center` }}>
                 <h1 className="content-title">Error 404</h1>
@@ -12,7 +12,7 @@ const NotFoundPage = () => (
                 </section>
             </article>
         </div>
-    </Layout>
+    </LayoutContainer>
 )
 
 export default NotFoundPage
