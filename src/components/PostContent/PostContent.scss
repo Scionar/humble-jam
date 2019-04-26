@@ -1,7 +1,19 @@
 @import "../../styles/variables";
 
-.post-hero-image {
+.post-content {
     border-radius: 0.5rem;
     margin: 2rem 0 0;
     width: 100%;
+
+    // Override PrismJS theme styles
+    pre[class*="language-"] {
+        background-color: transparent !important;
+        border-bottom: 1px solid $color__gallery;
+        border-top: 1px solid $color__gallery;
+        font-family: monospace !important;
+        font-size: 0.78rem !important;
+        margin: 2rem 0 !important;
+        padding: 1.5rem 0 !important;
+        overflow: auto;
+    }
 }

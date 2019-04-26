@@ -3,9 +3,25 @@
         [
             "prismjs",
             {
-                "languages": ["javascript", "css", "markup"],
+                "languages": [
+                    "markup",
+                    "css",
+                    "clike",
+                    "javascript",
+                    "markup-templating",
+                    "http",
+                    "json",
+                    "markdown",
+                    "php",
+                    "python",
+                    "jsx",
+                    "typescript",
+                    "scss",
+                    "tsx",
+                    "yaml"
+                ],
                 "plugins": ["line-numbers"],
-                "theme": "twilight",
+                "theme": "default",
                 "css": true
             }
         ]
