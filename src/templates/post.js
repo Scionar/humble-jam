@@ -1,46 +1,30 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
+import React from "react"
+import PropTypes from "prop-types"
+import { graphql } from "gatsby"
 
-import { MetaData } from '../components/common/meta'
-import { LayoutContainer } from '../containers'
+import { MetaData } from "../components/common/meta"
+import { FullPost, PostDate, PostHeroImage, PostContent } from "../components"
+import { LayoutContainer } from "../containers"
 
 /**
-* Single post view (/:slug)
-*
-* This file renders a single post and loads all the content.
-*
-*/
+ * Single post view (/:slug)
+ *
+ * This file renders a single post and loads all the content.
+ *
+ */
 const Post = ({ data, location }) => {
     const post = data.ghostPost
 
     return (
-            <>
-                <MetaData
-                    data={data}
-                    location={location}
-                    type="article"
-                />
-                <LayoutContainer>
-                    <div className="container">
-                        <article className="content">
-                            { post.feature_image ?
-                                <figure className="post-feature-image">
-                                    <img src={ post.feature_image } alt={ post.title } />
-                                </figure> : null }
-                            <section className="post-full-content">
-                                <h1 className="content-title">{post.title}</h1>
-
-                                {/* The main post content */ }
-                                <section
-                                    className="content-body load-external-scripts"
-                                    dangerouslySetInnerHTML={{ __html: post.html }}
-                                />
-                            </section>
-                        </article>
-                    </div>
-                </LayoutContainer>
-            </>
+        <>
+            <MetaData data={data} location={location} type="article" />
+            <LayoutContainer>
+                <PostDate date={post.published_at} />
+                <h1>{post.title}</h1>
+                <PostHeroImage url={post.feature_image} alt={post.title} />
+                <PostContent html={post.html}></PostContent>
+            </LayoutContainer>
+        </>
     )
 }
 
