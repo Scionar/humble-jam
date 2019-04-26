@@ -1,6 +1,8 @@
-# Humbe JAM
+# Humbe JAM :pray: :zap:
 
 JAM stack implementation of [Humble Ghost theme](https://github.com/Scionar/Humble).
+
+**NOTE: This project is still on work.**
 
 ## Installing
 
