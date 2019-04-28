@@ -20,7 +20,7 @@ const MetaData = ({
     image,
     location,
 }) => {
-    const canonical = url.resolve(process.env.SITE_URL, location.pathname, `/`)
+    const canonical = url.resolve(process.env.GATSBY_SITE_URL, location.pathname, `/`)
     const { ghostPost, ghostTag, ghostAuthor, ghostPage } = data
     settings = settings.allGhostSettings.edges[0].node
 
@@ -55,11 +55,11 @@ const MetaData = ({
             />
         )
     } else {
-        title = title || process.env.SITE_TITLE_META || settings.title
-        description = description || process.env.SITE_DESCRIPTION_META || settings.description
+        title = title || process.env.GATSBY_SITE_TITLE_META || settings.title
+        description = description || process.env.GATSBY_SITE_DESCRIPTION_META || settings.description
         image = image || settings.cover_image || null
 
-        image = image ? url.resolve(process.env.SITE_URL, image) : null
+        image = image ? url.resolve(process.env.GATSBY_SITE_URL, image) : null
 
         return (
             <WebsiteMeta

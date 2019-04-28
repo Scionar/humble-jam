@@ -19,7 +19,7 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
     const publicTags = _.map(tagsHelper(ghostPost, { visibility: `public`, fn: tag => tag }), `name`)
     const primaryTag = publicTags[0] || ``
     const shareImage = ghostPost.feature_image ? ghostPost.feature_image : _.get(settings, `cover_image`, null)
-    const publisherLogo = (settings.logo || config.siteIcon) ? url.resolve(process.env.SITE_URL, (settings.logo || config.siteIcon)) : null
+    const publisherLogo = (settings.logo || config.siteIcon) ? url.resolve(process.env.GATSBY_SITE_URL, (settings.logo || config.siteIcon)) : null
 
     return (
         <>
@@ -106,13 +106,13 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
                         "description": "${ghostPost.meta_description || ghostPost.excerpt}",
                         "mainEntityOfPage": {
                             "@type": "WebPage",
-                            "@id": "${process.env.SITE_URL}"
+                            "@id": "${process.env.GATSBY_SITE_URL}"
                         }
                     }
                 `}</script>
                 <script type="text/javascript">{`
                     var disqus_config = function () {
-                      this.page.url = '${process.env.SITE_URL}/${canonical}'
+                      this.page.url = '${process.env.GATSBY_SITE_URL}/${canonical}'
                       this.page.identifier = 'ghost-${ghostPost.comment_id}'
                     };
                 `}</script>
