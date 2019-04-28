@@ -26,7 +26,9 @@ const Post = ({ data, location }) => {
             <LayoutContainer>
                 <PostDate date={post.published_at} />
                 <h1>{post.title}</h1>
-                <PostHeroImage url={post.feature_image} alt={post.title} />
+                {post.feature_image && (
+                    <PostHeroImage url={post.feature_image} alt={post.title} />
+                )}
                 <PostContent html={post.html} />
                 <DisqusBlock />
             </LayoutContainer>

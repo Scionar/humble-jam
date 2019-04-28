@@ -24,7 +24,9 @@ const Page = ({ data, location }) => {
             <LayoutContainer>
                 <PostDate date={page.published_at} />
                 <h1>{page.title}</h1>
-                <PostHeroImage url={page.feature_image} alt={page.title} />
+                {page.feature_image && (
+                    <PostHeroImage url={page.feature_image} alt={page.title} />
+                )}
                 <PostContent html={page.html} />
             </LayoutContainer>
         </>
