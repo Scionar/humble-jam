@@ -2,6 +2,8 @@
 
 JAM stack implementation of [Humble Ghost theme](https://github.com/Scionar/Humble).
 
+This project is based on [Gastby Starter Ghost](https://github.com/tryghost/gatsby-starter-ghost). Thanks for their amazing work. Specially with meta data components.
+
 **NOTE: This project is still on work.**
 
 ## Installing
@@ -27,8 +29,11 @@ Create file names .ghost.json into repository root. Get API URL and API key from
     "contentApiKey": "<API CONTENT KEY>"
   }
 }
-
 ```
+
+## Modify site config
+
+File `/src/utils/siteConfig.js` includes theme settings which are not coming from Ghost instance. Also a good place for meta fallback values.
 
 ## Running development server
 
