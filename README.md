@@ -24,19 +24,19 @@ GHOST_API_URL=
 GHOST_CONTENT_API_KEY=
 
 # Site domain. Do not include a trailing slash!
-SITE_URL=
+GATSBY_SITE_URL=
 
 # This allows an alternative site title for meta data for pages.
-SITE_TITLE_META=
+GATSBY_SITE_TITLE_META=
 
 # This allows an alternative site description for meta data for pages.
-SITE_DESCRIPTION_META=
+GATSBY_SITE_DESCRIPTION_META=
 
 # Used for App manifest e.g. Mobile Home Screen
-MANIFEST_SHORT_TITLE=
+GATSBY_MANIFEST_SHORT_TITLE=
 
 # Disqus
-DISQUS_SHORTNAME=
+GATSBY_DISQUS_SHORTNAME=
 ```
 
 ## Personalization

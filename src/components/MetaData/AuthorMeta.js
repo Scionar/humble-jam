@@ -14,7 +14,7 @@ const AuthorMeta = ({ data, settings, canonical }) => {
     const author = getAuthorProperties(data)
     const shareImage = author.image || _.get(settings, `cover_image`, null)
     const title = `${data.name} - ${settings.title}`
-    const description = data.bio || process.env.SITE_DESCRIPTION_META || settings.description
+    const description = data.bio || process.env.GATSBY_SITE_DESCRIPTION_META || settings.description
 
     return (
         <>
@@ -47,7 +47,7 @@ const AuthorMeta = ({ data, settings, canonical }) => {
                             },` : ``}
                         "mainEntityOfPage": {
                             "@type": "WebPage",
-                            "@id": "${process.env.SITE_URL}"
+                            "@id": "${process.env.GATSBY_SITE_URL}"
                         },
                         "description": "${description}"
                     }
