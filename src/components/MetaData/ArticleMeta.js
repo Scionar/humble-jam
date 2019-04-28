@@ -7,7 +7,7 @@ import url from 'url'
 
 import getAuthorProperties from './getAuthorProperties'
 import ImageMeta from './ImageMeta'
-import config from '../../../utils/siteConfig'
+import config from '../../utils/siteConfig'
 
 import { tags as tagsHelper } from '@tryghost/helpers'
 

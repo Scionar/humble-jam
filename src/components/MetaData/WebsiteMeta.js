@@ -1,20 +1,23 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import Helmet from "react-helmet"
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { StaticQuery, graphql } from 'gatsby'
+import url from 'url'
 
 import ImageMeta from './ImageMeta'
-import getAuthorProperties from './getAuthorProperties'
-import config from '../../../utils/siteConfig'
+import config from '../../utils/siteConfig'
 
-const AuthorMeta = ({ data, settings, canonical }) => {
+const WebsiteMeta = ({ data, settings, canonical, title, description, image, type }) => {
     settings = settings.allGhostSettings.edges[0].node
 
-    const author = getAuthorProperties(data)
-    const shareImage = author.image || _.get(settings, `cover_image`, null)
-    const title = `${data.name} - ${settings.title}`
-    const description = data.bio || config.siteDescriptionMeta || settings.description
+    const publisherLogo = url.resolve(config.siteUrl, (settings.logo || config.siteIcon))
+    let shareImage = image || data.feature_image || _.get(settings, `cover_image`, null)
+
+    shareImage = shareImage ? url.resolve(config.siteUrl, shareImage) : null
+
+    description = description || data.meta_description || data.description || config.siteDescriptionMeta || settings.description
+    title = `${title || data.meta_title || data.name || data.title} - ${settings.title}`
 
     return (
         <>
@@ -23,7 +26,7 @@ const AuthorMeta = ({ data, settings, canonical }) => {
                 <meta name="description" content={description} />
                 <link rel="canonical" href={canonical} />
                 <meta property="og:site_name" content={settings.title} />
-                <meta property="og:type" content="profile" />
+                <meta property="og:type" content="website" />
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
                 <meta property="og:url" content={canonical} />
@@ -35,9 +38,7 @@ const AuthorMeta = ({ data, settings, canonical }) => {
                 <script type="application/ld+json">{`
                     {
                         "@context": "https://schema.org/",
-                        "@type": "Person",
-                        "name": "${data.name}",
-                        ${author.sameAsArray ? `"sameAs": ${author.sameAsArray},` : ``}
+                        "@type": "${type}",
                         "url": "${canonical}",
                         ${shareImage ? `"image": {
                                 "@type": "ImageObject",
@@ -45,6 +46,16 @@ const AuthorMeta = ({ data, settings, canonical }) => {
                                 "width": "${config.shareImageWidth}",
                                 "height": "${config.shareImageHeight}"
                             },` : ``}
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "${settings.title}",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": "${publisherLogo}",
+                                "width": 60,
+                                "height": 60
+                            }
+                        },
                         "mainEntityOfPage": {
                             "@type": "WebPage",
                             "@id": "${config.siteUrl}"
@@ -58,25 +69,28 @@ const AuthorMeta = ({ data, settings, canonical }) => {
     )
 }
 
-AuthorMeta.propTypes = {
+WebsiteMeta.propTypes = {
     data: PropTypes.shape({
-        name: PropTypes.string,
+        title: PropTypes.string,
+        feature_image: PropTypes.string,
+        description: PropTypes.string,
         bio: PropTypes.string,
         profile_image: PropTypes.string,
-        website: PropTypes.string,
-        twitter: PropTypes.string,
-        facebook: PropTypes.string,
     }).isRequired,
     settings: PropTypes.shape({
         allGhostSettings: PropTypes.object.isRequired,
     }).isRequired,
     canonical: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    image: PropTypes.string,
+    type: PropTypes.oneOf([`WebSite`, `Series`]).isRequired,
 }
 
-const AuthorMetaQuery = props => (
+const WebsiteMetaQuery = props => (
     <StaticQuery
         query={graphql`
-            query GhostSettingsAuthorMeta {
+            query GhostSettingsWebsiteMeta {
                 allGhostSettings {
                     edges {
                         node {
@@ -86,8 +100,8 @@ const AuthorMetaQuery = props => (
                 }
             }
         `}
-        render={data => <AuthorMeta settings={data} {...props} />}
+        render={data => <WebsiteMeta settings={data} {...props} />}
     />
 )
 
-export default AuthorMetaQuery
+export default WebsiteMetaQuery

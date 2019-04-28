@@ -2,8 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
-import { MetaData } from '../components/common/meta'
-import { PostDate, PostHeroImage, PostContent } from "../components"
+import { PostDate, PostHeroImage, PostContent, MetaData } from "../components"
 import { LayoutContainer } from '../containers'
 
 /**

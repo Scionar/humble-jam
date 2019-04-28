@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 
-import { MetaData } from "../components/common/meta"
+import { MetaData } from "../components"
 import { LayoutContainer, AuthorPostFeedContainer } from "../containers"
 
 /**
