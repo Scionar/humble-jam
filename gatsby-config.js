@@ -32,7 +32,7 @@ if (!apiUrl || !contentApiKey || contentApiKey.match(/<key>/)) {
  */
 module.exports = {
     siteMetadata: {
-        siteUrl: config.siteUrl,
+        siteUrl: process.env.SITE_URL,
     },
     plugins: [
         {
