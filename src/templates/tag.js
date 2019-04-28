@@ -2,19 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
-import { PostCard, Pagination } from '../components/common'
 import { MetaData } from '../components/common/meta'
-import { LayoutContainer } from '../containers'
+import { LayoutContainer, TagPostFeedContainer } from '../containers'
 
 /**
 * Tag page (/tag/:slug)
 *
-* Loads all posts for the requested tag incl. pagination.
+* Loads all posts for the requested tag.
 *
 */
-const Tag = ({ data, location, pageContext }) => {
+const Tag = ({ data, location }) => {
     const tag = data.ghostTag
-    const posts = data.allGhostPost.edges
 
     return (
         <>
@@ -24,19 +22,7 @@ const Tag = ({ data, location, pageContext }) => {
                 type="series"
             />
             <LayoutContainer>
-                <div className="container">
-                    <header className="tag-header">
-                        <h1>{tag.name}</h1>
-                        {tag.description ? <p>{tag.description}</p> : null }
-                    </header>
-                    <section className="post-feed">
-                        {posts.map(({ node }) => (
-                            // The tag below includes the markup for each post - components/common/PostCard.js
-                            <PostCard key={node.id} post={node} />
-                        ))}
-                    </section>
-                    <Pagination pageContext={pageContext} />
-                </div>
+                <TagPostFeedContainer tagSlug={tag.slug} />
             </LayoutContainer>
         </>
     )
