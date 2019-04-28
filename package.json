@@ -36,6 +36,7 @@
     "eslint-plugin-react": "7.12.4"
   },
   "dependencies": {
+    "@babel/core": "^7.0.0-0",
     "@tryghost/helpers": "1.0.1",
     "@tryghost/helpers-gatsby": "1.0.1",
     "babel-plugin-prismjs": "^1.0.2",
