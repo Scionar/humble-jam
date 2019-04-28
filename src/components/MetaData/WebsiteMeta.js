@@ -11,12 +11,12 @@ import config from '../../utils/siteConfig'
 const WebsiteMeta = ({ data, settings, canonical, title, description, image, type }) => {
     settings = settings.allGhostSettings.edges[0].node
 
-    const publisherLogo = url.resolve(config.siteUrl, (settings.logo || config.siteIcon))
+    const publisherLogo = url.resolve(process.env.SITE_URL, (settings.logo || config.siteIcon))
     let shareImage = image || data.feature_image || _.get(settings, `cover_image`, null)
 
-    shareImage = shareImage ? url.resolve(config.siteUrl, shareImage) : null
+    shareImage = shareImage ? url.resolve(process.env.SITE_URL, shareImage) : null
 
-    description = description || data.meta_description || data.description || config.siteDescriptionMeta || settings.description
+    description = description || data.meta_description || data.description || process.env.SITE_DESCRIPTION_META || settings.description
     title = `${title || data.meta_title || data.name || data.title} - ${settings.title}`
 
     return (
@@ -58,7 +58,7 @@ const WebsiteMeta = ({ data, settings, canonical, title, description, image, typ
                         },
                         "mainEntityOfPage": {
                             "@type": "WebPage",
-                            "@id": "${config.siteUrl}"
+                            "@id": "${process.env.SITE_URL}"
                         },
                         "description": "${description}"
                     }

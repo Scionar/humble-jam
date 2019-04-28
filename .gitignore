@@ -1,5 +1,4 @@
 # Project specific
-
 .ghost.json
 
 # Node template
@@ -62,6 +61,8 @@ typings/
 
 # dotenv environment variables file
 .env
+.env.development
+.env.production
 
 # IDE
 .idea/*

@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "license": "MIT",
   "author": {
-      "name" : "Joona Viertola",
-      "url" : "http://joonaviertola.com"
-    },
+    "name": "Joona Viertola",
+    "url": "http://joonaviertola.com"
+  },
   "homepage": "https://github.com/Scionar/humble-jam",
   "repository": {
     "type": "git",

@@ -55,9 +55,9 @@ const generateRSSFeed = function generateRSSFeed(siteConfig) {
                 description: siteDescription,
                 // generator: `Ghost ` + data.safeVersion,
                 generator: `Ghost 2.9`,
-                feed_url: `${siteConfig.siteUrl}/rss/`,
-                site_url: `${siteConfig.siteUrl}/`,
-                image_url: `${siteConfig.siteUrl}/${siteConfig.siteIcon}`,
+                feed_url: `${process.env.SITE_URL}/rss/`,
+                site_url: `${process.env.SITE_URL}/`,
+                image_url: `${process.env.SITE_URL}/${siteConfig.siteIcon}`,
                 ttl: `60`,
                 custom_namespaces: {
                     content: `http://purl.org/rss/1.0/modules/content/`,

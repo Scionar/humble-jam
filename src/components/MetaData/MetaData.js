@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 import url from 'url'
 
-import config from '../../utils/siteConfig'
 import ArticleMeta from './ArticleMeta'
 import WebsiteMeta from './WebsiteMeta'
 import AuthorMeta from './AuthorMeta'
@@ -21,7 +20,7 @@ const MetaData = ({
     image,
     location,
 }) => {
-    const canonical = url.resolve(config.siteUrl, location.pathname, `/`)
+    const canonical = url.resolve(process.env.SITE_URL, location.pathname, `/`)
     const { ghostPost, ghostTag, ghostAuthor, ghostPage } = data
     settings = settings.allGhostSettings.edges[0].node
 
@@ -56,11 +55,11 @@ const MetaData = ({
             />
         )
     } else {
-        title = title || config.siteTitleMeta || settings.title
-        description = description || config.siteDescriptionMeta || settings.description
+        title = title || process.env.SITE_TITLE_META || settings.title
+        description = description || process.env.SITE_DESCRIPTION_META || settings.description
         image = image || settings.cover_image || null
 
-        image = image ? url.resolve(config.siteUrl, image) : null
+        image = image ? url.resolve(process.env.SITE_URL, image) : null
 
         return (
             <WebsiteMeta

@@ -14,26 +14,32 @@ Install dependecies.
 yarn
 ```
 
-## Setup content fetch
+## Setup site configuration
 
-Create file names .ghost.json into repository root. Get API URL and API key from your Ghost installation's integrations tab.
+Create `.env.*` file depending on your used environment. `.env.development` for development and `.env.production` for production. Example configuration:
 
-```json
-{
-  "development": {
-    "apiUrl": "<API URL>",
-    "contentApiKey": "<API CONTENT KEY>"
-  },
-  "production": {
-    "apiUrl": "<API URL>",
-    "contentApiKey": "<API CONTENT KEY>"
-  }
-}
+```
+# Ghost API
+GHOST_API_URL=
+GHOST_CONTENT_API_KEY=
+
+# Site domain. Do not include a trailing slash!
+SITE_URL=
+
+# This allows an alternative site title for meta data for pages.
+SITE_TITLE_META=
+
+# This allows an alternative site description for meta data for pages.
+SITE_DESCRIPTION_META=
+
+# Used for App manifest e.g. Mobile Home Screen
+MANIFEST_SHORT_TITLE=
+
 ```
 
-## Modify site config
+## Personalization
 
-File `/src/utils/siteConfig.js` includes theme settings which are not coming from Ghost instance. Also a good place for meta fallback values.
+Favicons are found under `/static/`.
 
 ## Running development server
 
