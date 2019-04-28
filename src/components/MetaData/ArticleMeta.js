@@ -110,6 +110,12 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
                         }
                     }
                 `}</script>
+                <script type="text/javascript">{`
+                    var disqus_config = function () {
+                      this.page.url = '${process.env.SITE_URL}/${canonical}'
+                      this.page.identifier = 'ghost-${ghostPost.comment_id}'
+                    };
+                `}</script>
             </Helmet>
             <ImageMeta image={shareImage} />
         </>

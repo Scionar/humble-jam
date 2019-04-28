@@ -35,6 +35,8 @@ SITE_DESCRIPTION_META=
 # Used for App manifest e.g. Mobile Home Screen
 MANIFEST_SHORT_TITLE=
 
+# Disqus
+DISQUS_SHORTNAME=
 ```
 
 ## Personalization

@@ -2,7 +2,13 @@ import React from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 
-import { PostDate, PostHeroImage, PostContent, MetaData } from "../components"
+import {
+    PostDate,
+    PostHeroImage,
+    PostContent,
+    MetaData,
+    DisqusBlock,
+} from "../components"
 import { LayoutContainer } from "../containers"
 
 /**
@@ -22,6 +28,7 @@ const Post = ({ data, location }) => {
                 <h1>{post.title}</h1>
                 <PostHeroImage url={post.feature_image} alt={post.title} />
                 <PostContent html={post.html} />
+                <DisqusBlock />
             </LayoutContainer>
         </>
     )
