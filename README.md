@@ -37,6 +37,9 @@ GATSBY_MANIFEST_SHORT_TITLE=
 
 # Disqus
 GATSBY_DISQUS_SHORTNAME=
+
+# Google Analytics
+GATSBY_GOOGLE_ANALYTICS_ID=
 ```
 
 ## Personalization
