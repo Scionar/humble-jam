@@ -1,6 +1,7 @@
 const path = require(`path`)
 const config = require(`./src/utils/siteConfig`)
 const { paginate } = require(`gatsby-awesome-pagination`)
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 
 /**
 * Here is the place where Gatsby creates the URLs for all the
@@ -270,4 +271,30 @@ exports.createPages = ({ graphql, actions }) => {
     })
 
     return Promise.all([createPosts, createTags, createAuthors, createPages])
+}
+
+exports.onCreateNode = async ({ node, actions, store, createNodeId, cache }) => {
+    // If the node is not GhostPost, we don't wanna do anything.
+    const nodeTypes = [`GhostPost`, `GhostPage`]
+    if (!nodeTypes.includes(node.internal.type)) {
+        return
+    }
+
+    const { createNode } = actions
+
+    // Download image and create a File node with gatsby-transformer-sharp and
+    // gatsby-plugin-sharp that node will become an ImageSharp.
+    const fileNode = await createRemoteFileNode({
+        url: node.feature_image,
+        store,
+        cache,
+        createNode,
+        parentNodeId: node.id,
+        createNodeId,
+    })
+
+    if (fileNode) {
+        // Link File node to GhostPost node at field image.
+        node.localFeatureImage___NODE = fileNode.id
+    }
 }
