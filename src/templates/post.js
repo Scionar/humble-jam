@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
+import { get } from "lodash"
 
 import {
     PostDate,
@@ -20,14 +21,20 @@ import { LayoutContainer } from "../containers"
 const Post = ({ data, location }) => {
     const post = data.ghostPost
 
+    const postImage = get(
+        post,
+        `localFeatureImage.childImageSharp.fluid.src`,
+        null
+    )
+
     return (
         <>
             <MetaData data={data} location={location} type="article" />
             <LayoutContainer>
                 <PostDate date={post.published_at} />
                 <h1>{post.title}</h1>
-                {post.feature_image && (
-                    <PostHeroImage url={post.feature_image} alt={post.title} />
+                {postImage && (
+                    <PostHeroImage url={postImage} alt={post.title} />
                 )}
                 <PostContent html={post.html} />
                 <DisqusBlock />
@@ -53,6 +60,13 @@ export const postQuery = graphql`
     query($slug: String!) {
         ghostPost(slug: { eq: $slug }) {
             ...GhostPostFields
+            localFeatureImage {
+                childImageSharp {
+                    fluid(maxWidth: 750, cropFocus: CENTER) {
+                        src
+                    }
+                }
+            }
         }
     }
 `
