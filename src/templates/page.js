@@ -17,7 +17,7 @@ const Page = ({ data, location }) => {
 
     const pageImage = get(
         page,
-        `localFeatureImage.childImageSharp.fluid.src`,
+        `localFeatureImage.childImageSharp.fluid`,
         null
     );
 
@@ -28,7 +28,7 @@ const Page = ({ data, location }) => {
                 <PostDate date={page.published_at} />
                 <h1>{page.title}</h1>
                 {pageImage && (
-                    <PostHeroImage url={pageImage} alt={page.title} />
+                    <PostHeroImage image={pageImage} alt={page.title} />
                 )}
                 <PostContent html={page.html} />
             </LayoutContainer>
@@ -42,7 +42,7 @@ Page.propTypes = {
             published_at: PropTypes.string.isRequired,
             title: PropTypes.string.isRequired,
             html: PropTypes.string.isRequired,
-            feature_image: PropTypes.string
+            localFeatureImage: PropTypes.object
         }).isRequired
     }).isRequired,
     location: PropTypes.object.isRequired
@@ -56,8 +56,11 @@ export const postQuery = graphql`
             ...GhostPageFields
             localFeatureImage {
                 childImageSharp {
-                    fluid(maxWidth: 750, cropFocus: CENTER) {
+                    fluid(maxWidth: 750, maxHeight: 400, cropFocus: CENTER) {
+                        aspectRatio
                         src
+                        srcSet
+                        sizes
                     }
                 }
             }

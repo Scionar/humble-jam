@@ -23,7 +23,7 @@ const Post = ({ data, location }) => {
 
     const postImage = get(
         post,
-        `localFeatureImage.childImageSharp.fluid.src`,
+        `localFeatureImage.childImageSharp.fluid`,
         null
     );
 
@@ -34,7 +34,7 @@ const Post = ({ data, location }) => {
                 <PostDate date={post.published_at} />
                 <h1>{post.title}</h1>
                 {postImage && (
-                    <PostHeroImage url={postImage} alt={post.title} />
+                    <PostHeroImage image={postImage} alt={post.title} />
                 )}
                 <PostContent html={post.html} />
                 <DisqusBlock />
@@ -48,7 +48,7 @@ Post.propTypes = {
         ghostPost: PropTypes.shape({
             title: PropTypes.string.isRequired,
             html: PropTypes.string.isRequired,
-            feature_image: PropTypes.string
+            localFeatureImage: PropTypes.object
         }).isRequired
     }).isRequired,
     location: PropTypes.object.isRequired
@@ -62,8 +62,11 @@ export const postQuery = graphql`
             ...GhostPostFields
             localFeatureImage {
                 childImageSharp {
-                    fluid(maxWidth: 750, cropFocus: CENTER) {
+                    fluid(maxWidth: 750, maxHeight: 400, cropFocus: CENTER) {
+                        aspectRatio
                         src
+                        srcSet
+                        sizes
                     }
                 }
             }

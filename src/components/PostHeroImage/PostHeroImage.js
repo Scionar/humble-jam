@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Img from 'gatsby-image';
 
 import './PostHeroImage.scss';
 
-const PostHeroImage = ({ url, alt }) => (
-    <img className="post-full__image" src={url} alt={alt} />
+const PostHeroImage = ({ image, alt }) => (
+    <Img className="post-full__image" fluid={image} alt={alt} />
 );
 
 PostHeroImage.propTypes = {
-    url: PropTypes.string.isRequired,
+    image: PropTypes.object.isRequired,
     alt: PropTypes.string.isRequired
 };
 

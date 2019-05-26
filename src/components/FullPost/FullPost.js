@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Img from 'gatsby-image';
 
 import './FullPost.scss';
 
-const FullPost = ({ heroImageUrl, title, date, children }) => (
+const FullPost = ({ heroImage, title, date, children }) => (
     <article className="post">
         <header className="post-full__header">
             <section className="post-full__meta">
@@ -14,8 +15,12 @@ const FullPost = ({ heroImageUrl, title, date, children }) => (
 
             <h1 className="post-full__title">{title}</h1>
 
-            {heroImageUrl && (
-                <img className="post-full__image" src={heroImageUrl} />
+            {heroImage && (
+                <Img
+                    className="post-full__image"
+                    fluid={heroImage}
+                    alt={title}
+                />
             )}
         </header>
 
@@ -28,7 +33,7 @@ const FullPost = ({ heroImageUrl, title, date, children }) => (
 );
 
 FullPost.propTypes = {
-    heroImageUrl: PropTypes.string,
+    heroImage: PropTypes.string,
     title: PropTypes.string,
     date: PropTypes.string,
     children: PropTypes.node.isRequired

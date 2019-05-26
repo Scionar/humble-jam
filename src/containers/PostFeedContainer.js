@@ -19,7 +19,7 @@ const PostFeedContainer = ({ data }) => {
                 const postTitle = node.title;
                 const postImage = get(
                     node,
-                    `localFeatureImage.childImageSharp.fluid.src`,
+                    `localFeatureImage.childImageSharp.fluid`,
                     null
                 );
 
@@ -58,7 +58,10 @@ const PostFeedContainerQuery = props => (
                                         maxHeight: 70
                                         cropFocus: CENTER
                                     ) {
+                                        aspectRatio
                                         src
+                                        srcSet
+                                        sizes
                                     }
                                 }
                             }

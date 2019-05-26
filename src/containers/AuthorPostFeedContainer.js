@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 import moment from 'moment';
+import { get } from 'lodash';
 
 import { PostCard } from '../components';
 
@@ -22,7 +23,11 @@ const AuthorPostFeedContainer = ({ data, authorSlug }) => {
                     `MMMM DD, YYYY`
                 );
                 const postTitle = node.title;
-                const postImage = node.feature_image;
+                const postImage = get(
+                    node,
+                    `localFeatureImage.childImageSharp.fluid`,
+                    null
+                );
 
                 return (
                     <PostCard
@@ -51,6 +56,20 @@ const AuthorPostFeedContainerQuery = props => (
                     edges {
                         node {
                             ...GhostPostFields
+                            localFeatureImage {
+                                childImageSharp {
+                                    fluid(
+                                        maxWidth: 750
+                                        maxHeight: 70
+                                        cropFocus: CENTER
+                                    ) {
+                                        aspectRatio
+                                        src
+                                        srcSet
+                                        sizes
+                                    }
+                                }
+                            }
                         }
                     }
                 }
