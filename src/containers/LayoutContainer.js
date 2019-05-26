@@ -1,13 +1,13 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { StaticQuery, graphql } from "gatsby"
-import Helmet from "react-helmet"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { StaticQuery, graphql } from 'gatsby';
+import Helmet from 'react-helmet';
 
-import { Layout } from "../components"
-import { HeaderContainer, FooterContainer } from "."
+import { Layout } from '../components';
+import { HeaderContainer, FooterContainer } from '.';
 
 const LayoutContainer = ({ data, children, isHome }) => {
-    const site = data.allGhostSettings.edges[0].node
+    const site = data.allGhostSettings.edges[0].node;
     return (
         <>
             <Helmet>
@@ -20,20 +20,20 @@ const LayoutContainer = ({ data, children, isHome }) => {
                 {children}
             </Layout>
         </>
-    )
-}
+    );
+};
 
 LayoutContainer.defaultProps = {
-    isHome: false,
-}
+    isHome: false
+};
 
 LayoutContainer.propTypes = {
     data: PropTypes.shape({
-        allGhostSettings: PropTypes.object.isRequired,
+        allGhostSettings: PropTypes.object.isRequired
     }).isRequired,
     children: PropTypes.node.isRequired,
-    isHome: PropTypes.bool,
-}
+    isHome: PropTypes.bool
+};
 
 const LayoutContainerQuery = props => (
     <StaticQuery
@@ -50,6 +50,6 @@ const LayoutContainerQuery = props => (
         `}
         render={data => <LayoutContainer data={data} {...props} />}
     />
-)
+);
 
-export default LayoutContainerQuery
+export default LayoutContainerQuery;

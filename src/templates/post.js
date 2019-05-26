@@ -1,16 +1,16 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { graphql } from "gatsby"
-import { get } from "lodash"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
+import { get } from 'lodash';
 
 import {
     PostDate,
     PostHeroImage,
     PostContent,
     MetaData,
-    DisqusBlock,
-} from "../components"
-import { LayoutContainer } from "../containers"
+    DisqusBlock
+} from '../components';
+import { LayoutContainer } from '../containers';
 
 /**
  * Single post view (/:slug)
@@ -19,13 +19,13 @@ import { LayoutContainer } from "../containers"
  *
  */
 const Post = ({ data, location }) => {
-    const post = data.ghostPost
+    const post = data.ghostPost;
 
     const postImage = get(
         post,
         `localFeatureImage.childImageSharp.fluid.src`,
         null
-    )
+    );
 
     return (
         <>
@@ -40,21 +40,21 @@ const Post = ({ data, location }) => {
                 <DisqusBlock />
             </LayoutContainer>
         </>
-    )
-}
+    );
+};
 
 Post.propTypes = {
     data: PropTypes.shape({
         ghostPost: PropTypes.shape({
             title: PropTypes.string.isRequired,
             html: PropTypes.string.isRequired,
-            feature_image: PropTypes.string,
-        }).isRequired,
+            feature_image: PropTypes.string
+        }).isRequired
     }).isRequired,
-    location: PropTypes.object.isRequired,
-}
+    location: PropTypes.object.isRequired
+};
 
-export default Post
+export default Post;
 
 export const postQuery = graphql`
     query($slug: String!) {
@@ -69,4 +69,4 @@ export const postQuery = graphql`
             }
         }
     }
-`
+`;

@@ -1,8 +1,8 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Link } from "gatsby"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
 
-import "./Header.scss"
+import './Header.scss';
 
 const Header = ({ logoUrl, isHome, title, description, navigation }) => (
     <header className="header">
@@ -25,18 +25,18 @@ const Header = ({ logoUrl, isHome, title, description, navigation }) => (
             {navigation}
         </div>
     </header>
-)
+);
 
 Header.defaultProps = {
-    isHome: false,
-}
+    isHome: false
+};
 
 Header.propTypes = {
     logoUrl: PropTypes.string,
     isHome: PropTypes.bool,
     title: PropTypes.string,
     description: PropTypes.string,
-    navigation: PropTypes.node,
-}
+    navigation: PropTypes.node
+};
 
-export default Header
+export default Header;

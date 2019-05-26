@@ -1,26 +1,28 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { StaticQuery, graphql } from "gatsby"
-import moment from "moment"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { StaticQuery, graphql } from 'gatsby';
+import moment from 'moment';
 
-import { PostCard } from "../components"
+import { PostCard } from '../components';
 
 const AuthorPostFeedContainer = ({ data, authorSlug }) => {
     /*
      * Filter only current author of this page. This avoids static graphql
      * striction.
      */
-    const posts = data.allGhostPost.edges.filter(post => post.node.primary_author.slug === authorSlug)
+    const posts = data.allGhostPost.edges.filter(
+        post => post.node.primary_author.slug === authorSlug
+    );
 
     return (
         <>
             {posts.map(({ node }) => {
-                const postUrl = `/${node.slug}/`
+                const postUrl = `/${node.slug}/`;
                 const postDate = moment(node.published_at).format(
                     `MMMM DD, YYYY`
-                )
-                const postTitle = node.title
-                const postImage = node.feature_image
+                );
+                const postTitle = node.title;
+                const postImage = node.feature_image;
 
                 return (
                     <PostCard
@@ -30,16 +32,16 @@ const AuthorPostFeedContainer = ({ data, authorSlug }) => {
                         title={postTitle}
                         featuredImage={postImage}
                     />
-                )
+                );
             })}
         </>
-    )
-}
+    );
+};
 
 AuthorPostFeedContainer.propTypes = {
     data: PropTypes.object.isRequired,
-    authorSlug: PropTypes.string.isRequired,
-}
+    authorSlug: PropTypes.string.isRequired
+};
 
 const AuthorPostFeedContainerQuery = props => (
     <StaticQuery
@@ -56,6 +58,6 @@ const AuthorPostFeedContainerQuery = props => (
         `}
         render={data => <AuthorPostFeedContainer data={data} {...props} />}
     />
-)
+);
 
-export default AuthorPostFeedContainerQuery
+export default AuthorPostFeedContainerQuery;

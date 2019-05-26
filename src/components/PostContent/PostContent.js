@@ -1,7 +1,7 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import "./PostContent.scss"
+import './PostContent.scss';
 
 const PostContent = ({ children, html }) => (
     <main
@@ -11,11 +11,11 @@ const PostContent = ({ children, html }) => (
     >
         {children}
     </main>
-)
+);
 
 PostContent.propTypes = {
     children: PropTypes.node,
-    html: PropTypes.node,
-}
+    html: PropTypes.node
+};
 
-export default PostContent
+export default PostContent;

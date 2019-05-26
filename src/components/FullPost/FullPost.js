@@ -1,7 +1,7 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import "./FullPost.scss"
+import './FullPost.scss';
 
 const FullPost = ({ heroImageUrl, title, date, children }) => (
     <article className="post">
@@ -25,13 +25,13 @@ const FullPost = ({ heroImageUrl, title, date, children }) => (
 
         {/* Disqus comments */}
     </article>
-)
+);
 
 FullPost.propTypes = {
     heroImageUrl: PropTypes.string,
     title: PropTypes.string,
     date: PropTypes.string,
-    children: PropTypes.node.isRequired,
-}
+    children: PropTypes.node.isRequired
+};
 
-export default FullPost
+export default FullPost;

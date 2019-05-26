@@ -1,9 +1,9 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Link } from "gatsby"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
 
-import NavigationIcon from "../../images/menu.svg"
-import "./Navigation.scss"
+import NavigationIcon from '../../images/menu.svg';
+import './Navigation.scss';
 
 const Navigation = ({ data }) => (
     <nav className="navigation">
@@ -26,7 +26,7 @@ const Navigation = ({ data }) => (
                                 {navItem.label}
                             </a>
                         </li>
-                    )
+                    );
                 } else {
                     return (
                         <li className="navigation__item" key={i}>
@@ -37,20 +37,20 @@ const Navigation = ({ data }) => (
                                 {navItem.label}
                             </Link>
                         </li>
-                    )
+                    );
                 }
             })}
         </ul>
     </nav>
-)
+);
 
 Navigation.propTypes = {
     data: PropTypes.arrayOf(
         PropTypes.shape({
             label: PropTypes.string.isRequired,
-            url: PropTypes.string.isRequired,
+            url: PropTypes.string.isRequired
         }).isRequired
-    ).isRequired,
-}
+    ).isRequired
+};
 
-export default Navigation
+export default Navigation;

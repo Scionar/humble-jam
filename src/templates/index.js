@@ -1,9 +1,9 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { graphql } from "gatsby"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
 
-import { MetaData } from "../components"
-import { LayoutContainer, PostFeedContainer } from "../containers"
+import { MetaData } from '../components';
+import { LayoutContainer, PostFeedContainer } from '../containers';
 
 /**
  * Main index page (home page)
@@ -12,21 +12,21 @@ import { LayoutContainer, PostFeedContainer } from "../containers"
  *
  */
 const Index = ({ location }) => (
-        <>
-            <MetaData location={location} />
-            <LayoutContainer isHome={true}>
-                <PostFeedContainer />
-            </LayoutContainer>
-        </>
-)
+    <>
+        <MetaData location={location} />
+        <LayoutContainer isHome={true}>
+            <PostFeedContainer />
+        </LayoutContainer>
+    </>
+);
 
 Index.propTypes = {
     location: PropTypes.shape({
-        pathname: PropTypes.string.isRequired,
-    }).isRequired,
-}
+        pathname: PropTypes.string.isRequired
+    }).isRequired
+};
 
-export default Index
+export default Index;
 
 // This page query loads all posts sorted descending by published date
 // The `limit` and `skip` values are used for pagination
@@ -44,4 +44,4 @@ export const pageQuery = graphql`
             }
         }
     }
-`
+`;

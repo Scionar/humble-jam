@@ -4,71 +4,71 @@ $navigation__icon-width: 1.5rem;
 $navigation__padding: 1.5rem;
 
 .navigation {
-  margin: 0 calc(-1 * #{$navigation__padding}) 0 0;
-  position: relative;
-  height: 2.5rem;
-  z-index: 1;
-  width: 4.5rem;
+    margin: 0 calc(-1 * #{$navigation__padding}) 0 0;
+    position: relative;
+    height: 2.5rem;
+    z-index: 1;
+    width: 4.5rem;
 }
 
 .navigation__icon {
-  background-color: $color__white--50;
-  border: 1px solid transparent;
-  border-radius: 2px;
-  box-sizing: border-box;
-  height: 100%;
-  padding: 0.5rem $navigation__padding;
-  text-align: center;
-  width: 100%;
+    background-color: $color__white--50;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 0.5rem $navigation__padding;
+    text-align: center;
+    width: 100%;
 
-  svg {
-    height: $navigation__icon-width;
-    width: $navigation__icon-width;
-  }
+    svg {
+        height: $navigation__icon-width;
+        width: $navigation__icon-width;
+    }
 
-  .navigation:hover & {
-    background-color: $color__white;
-    border-radius: 2px 0 0 2px;
-    border: 1px solid $color__gallery;
-    border-bottom: 1px solid $color__white;
-  }
+    .navigation:hover & {
+        background-color: $color__white;
+        border-radius: 2px 0 0 2px;
+        border: 1px solid $color__gallery;
+        border-bottom: 1px solid $color__white;
+    }
 }
 
 .navigation__links {
-  background-color: $color__white;
-  border-radius: 2px;
-  border: 1px solid $color__gallery;
-  border-bottom: 1px solid $color__alto;
-  box-shadow: 0 1px 3px 0 $color__gallery;
-  display: none;
-  font-size: 1rem;
-  padding: 1rem;
-  margin: 0;
-  position: absolute;
-  top: calc(100% - 1px);
-  right: 0;
-  list-style: none;
-  min-width: 6rem;
-  z-index: -1;
+    background-color: $color__white;
+    border-radius: 2px;
+    border: 1px solid $color__gallery;
+    border-bottom: 1px solid $color__alto;
+    box-shadow: 0 1px 3px 0 $color__gallery;
+    display: none;
+    font-size: 1rem;
+    padding: 1rem;
+    margin: 0;
+    position: absolute;
+    top: calc(100% - 1px);
+    right: 0;
+    list-style: none;
+    min-width: 6rem;
+    z-index: -1;
 
-  @include breakpoint('s') {
-    font-size: 0.8rem;
-  }
+    @include breakpoint('s') {
+        font-size: 0.8rem;
+    }
 
-  .navigation:hover & {
-    display: block;
-  }
+    .navigation:hover & {
+        display: block;
+    }
 }
 
 .navigation__item {
-  margin-top: 0.5rem;
+    margin-top: 0.5rem;
 
-  &:first-of-type {
-    margin: 0;
-  }
+    &:first-of-type {
+        margin: 0;
+    }
 }
 
 .navigation__item-link {
-  color: $color__black;
-  text-decoration: none;
+    color: $color__black;
+    text-decoration: none;
 }

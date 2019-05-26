@@ -1,9 +1,9 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { graphql } from "gatsby"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
 
-import { MetaData } from "../components"
-import { LayoutContainer, AuthorPostFeedContainer } from "../containers"
+import { MetaData } from '../components';
+import { LayoutContainer, AuthorPostFeedContainer } from '../containers';
 
 /**
  * Author page (/author/:slug)
@@ -12,7 +12,7 @@ import { LayoutContainer, AuthorPostFeedContainer } from "../containers"
  *
  */
 const Author = ({ data, location }) => {
-    const author = data.ghostAuthor
+    const author = data.ghostAuthor;
 
     return (
         <>
@@ -21,8 +21,8 @@ const Author = ({ data, location }) => {
                 <AuthorPostFeedContainer authorSlug={author.slug} />
             </LayoutContainer>
         </>
-    )
-}
+    );
+};
 
 Author.propTypes = {
     data: PropTypes.shape({
@@ -35,16 +35,16 @@ Author.propTypes = {
             bio: PropTypes.string,
             location: PropTypes.string,
             facebook: PropTypes.string,
-            twitter: PropTypes.string,
+            twitter: PropTypes.string
         }),
-        allGhostPost: PropTypes.object.isRequired,
+        allGhostPost: PropTypes.object.isRequired
     }).isRequired,
     location: PropTypes.shape({
-        pathname: PropTypes.string.isRequired,
-    }).isRequired,
-}
+        pathname: PropTypes.string.isRequired
+    }).isRequired
+};
 
-export default Author
+export default Author;
 
 export const pageQuery = graphql`
     query GhostAuthorQuery($slug: String!, $limit: Int!, $skip: Int!) {
@@ -64,4 +64,4 @@ export const pageQuery = graphql`
             }
         }
     }
-`
+`;

@@ -1,12 +1,12 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { StaticQuery, graphql } from "gatsby"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { StaticQuery, graphql } from 'gatsby';
 
-import { Header } from "../components"
-import { NavigationContainer } from "."
+import { Header } from '../components';
+import { NavigationContainer } from '.';
 
 const HeaderContainer = ({ data, isHome }) => {
-    const site = data.allGhostSettings.edges[0].node
+    const site = data.allGhostSettings.edges[0].node;
 
     return (
         <Header
@@ -16,19 +16,19 @@ const HeaderContainer = ({ data, isHome }) => {
             navigation={<NavigationContainer />}
             isHome={isHome}
         />
-    )
-}
+    );
+};
 
 HeaderContainer.defaultProps = {
-    isHome: false,
-}
+    isHome: false
+};
 
 HeaderContainer.propTypes = {
     isHome: PropTypes.bool,
     data: PropTypes.shape({
-        allGhostSettings: PropTypes.object.isRequired,
-    }).isRequired,
-}
+        allGhostSettings: PropTypes.object.isRequired
+    }).isRequired
+};
 
 const HeaderContainerQuery = props => (
     <StaticQuery
@@ -45,6 +45,6 @@ const HeaderContainerQuery = props => (
         `}
         render={data => <HeaderContainer data={data} {...props} />}
     />
-)
+);
 
-export default HeaderContainerQuery
+export default HeaderContainerQuery;

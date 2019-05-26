@@ -1,10 +1,10 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import FacebookIcon from "../../images/facebook.svg"
-import TwitterIcon from "../../images/twitter.svg"
-import RssIcon from "../../images/rss.svg"
-import "./Footer.scss"
+import FacebookIcon from '../../images/facebook.svg';
+import TwitterIcon from '../../images/twitter.svg';
+import RssIcon from '../../images/rss.svg';
+import './Footer.scss';
 
 const Footer = ({ siteTitle, facebookUrl, twitterUrl, rssUrl, year }) => (
     <footer className="footer">
@@ -40,22 +40,20 @@ const Footer = ({ siteTitle, facebookUrl, twitterUrl, rssUrl, year }) => (
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <RssIcon
-                            alt="RSS Feed"
-                        />
+                        <RssIcon alt="RSS Feed" />
                     </a>
                 )}
             </nav>
         </div>
     </footer>
-)
+);
 
 Footer.propTypes = {
     siteTitle: PropTypes.string.isRequired,
     facebookUrl: PropTypes.string,
     twitterUrl: PropTypes.string,
     rssUrl: PropTypes.string,
-    year: PropTypes.string,
-}
+    year: PropTypes.string
+};
 
-export default Footer
+export default Footer;

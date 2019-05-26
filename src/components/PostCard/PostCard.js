@@ -1,8 +1,8 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Link } from "gatsby"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
 
-import "./PostCard.scss"
+import './PostCard.scss';
 
 const PostCard = ({ postUrl, date, title, featuredImage }) => (
     <div className="post-card">
@@ -16,13 +16,13 @@ const PostCard = ({ postUrl, date, title, featuredImage }) => (
             )}
         </Link>
     </div>
-)
+);
 
 PostCard.propTypes = {
     postUrl: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    featuredImage: PropTypes.string,
-}
+    featuredImage: PropTypes.string
+};
 
-export default PostCard
+export default PostCard;

@@ -1,24 +1,20 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { StaticQuery, graphql } from "gatsby"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { StaticQuery, graphql } from 'gatsby';
 
-import { Navigation } from "../components"
+import { Navigation } from '../components';
 
 const NavigationContainer = ({ data }) => {
-    const site = data.allGhostSettings.edges[0].node
+    const site = data.allGhostSettings.edges[0].node;
 
-    return (
-        <Navigation
-            data={site.navigation}
-        />
-    )
-}
+    return <Navigation data={site.navigation} />;
+};
 
 NavigationContainer.propTypes = {
     data: PropTypes.shape({
-        allGhostSettings: PropTypes.object.isRequired,
-    }).isRequired,
-}
+        allGhostSettings: PropTypes.object.isRequired
+    }).isRequired
+};
 
 const NavigationContainerQuery = props => (
     <StaticQuery
@@ -35,6 +31,6 @@ const NavigationContainerQuery = props => (
         `}
         render={data => <NavigationContainer data={data} {...props} />}
     />
-)
+);
 
-export default NavigationContainerQuery
+export default NavigationContainerQuery;

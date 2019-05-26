@@ -1,5 +1,5 @@
 /* eslint-disable */
-import Prism from "prismjs"
+import Prism from 'prismjs';
 
 /**
  * Trust All Scripts
@@ -12,41 +12,43 @@ import Prism from "prismjs"
  *
  */
 var trustAllScripts = function() {
-    var scriptNodes = document.querySelectorAll(".load-external-scripts script")
+    var scriptNodes = document.querySelectorAll(
+        '.load-external-scripts script'
+    );
 
     for (var i = 0; i < scriptNodes.length; i += 1) {
-        var node = scriptNodes[i]
-        var s = document.createElement("script")
-        s.type = node.type || "text/javascript"
+        var node = scriptNodes[i];
+        var s = document.createElement('script');
+        s.type = node.type || 'text/javascript';
 
         if (node.attributes.src) {
-            s.src = node.attributes.src.value
+            s.src = node.attributes.src.value;
         } else {
-            s.innerHTML = node.innerHTML
+            s.innerHTML = node.innerHTML;
         }
 
-        document.getElementsByTagName("head")[0].appendChild(s)
+        document.getElementsByTagName('head')[0].appendChild(s);
     }
-}
+};
 
 var initDisqus = function() {
     if (process.env.GATSBY_DISQUS_SHORTNAME) {
         var d = document,
-            s = d.createElement(`script`)
+            s = d.createElement(`script`);
         s.src =
             `https://` +
             process.env.GATSBY_DISQUS_SHORTNAME +
-            `.disqus.com/embed.js`
-        s.setAttribute(`data-timestamp`, +new Date())
-        ;(d.head || d.body).appendChild(s)
+            `.disqus.com/embed.js`;
+        s.setAttribute(`data-timestamp`, +new Date());
+        (d.head || d.body).appendChild(s);
     } else {
         // Remove Disqus HTML block.
-        var disqusBlock = document.getElementById(`disqus-block`)
+        var disqusBlock = document.getElementById(`disqus-block`);
         if (disqusBlock !== null) {
-            disqusBlock.parentNode.removeChild(disqusBlock)
+            disqusBlock.parentNode.removeChild(disqusBlock);
         }
     }
-}
+};
 
 /*
  * NOTICE: ES6 module exports are not officially supported because of NodeJs
@@ -56,7 +58,7 @@ var initDisqus = function() {
  */
 
 export const onRouteUpdate = () => {
-    trustAllScripts()
-    Prism.highlightAll()
-    initDisqus()
-}
+    trustAllScripts();
+    Prism.highlightAll();
+    initDisqus();
+};

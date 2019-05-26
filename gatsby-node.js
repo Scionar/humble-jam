@@ -1,49 +1,47 @@
-const path = require(`path`)
-const config = require(`./src/utils/siteConfig`)
-const { paginate } = require(`gatsby-awesome-pagination`)
-const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
+const path = require(`path`);
+const config = require(`./src/utils/siteConfig`);
+const { paginate } = require(`gatsby-awesome-pagination`);
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`);
 
 /**
-* Here is the place where Gatsby creates the URLs for all the
-* posts, tags, pages and authors that we fetched from the Ghost site.
-*/
+ * Here is the place where Gatsby creates the URLs for all the
+ * posts, tags, pages and authors that we fetched from the Ghost site.
+ */
 exports.createPages = ({ graphql, actions }) => {
-    const { createPage } = actions
+    const { createPage } = actions;
 
     /**
-    * Posts
-    */
+     * Posts
+     */
     const createPosts = new Promise((resolve, reject) => {
-        const postTemplate = path.resolve(`./src/templates/post.js`)
-        const indexTemplate = path.resolve(`./src/templates/index.js`)
+        const postTemplate = path.resolve(`./src/templates/post.js`);
+        const indexTemplate = path.resolve(`./src/templates/index.js`);
         resolve(
             graphql(`
                 {
-                    allGhostPost(
-                        sort: {order: ASC, fields: published_at}
-                    ) {
+                    allGhostPost(sort: { order: ASC, fields: published_at }) {
                         edges {
                             node {
                                 slug
                             }
                         }
                     }
-                }`
-            ).then((result) => {
+                }
+            `).then(result => {
                 if (result.errors) {
-                    return reject(result.errors)
+                    return reject(result.errors);
                 }
 
                 if (!result.data.allGhostPost) {
-                    return resolve()
+                    return resolve();
                 }
 
-                const items = result.data.allGhostPost.edges
+                const items = result.data.allGhostPost.edges;
 
                 items.forEach(({ node }) => {
                     // This part here defines, that our posts will use
                     // a `/:slug/` permalink.
-                    node.url = `/${node.slug}/`
+                    node.url = `/${node.slug}/`;
 
                     createPage({
                         path: node.url,
@@ -51,10 +49,10 @@ exports.createPages = ({ graphql, actions }) => {
                         context: {
                             // Data passed to context is available
                             // in page queries as GraphQL variables.
-                            slug: node.slug,
-                        },
-                    })
-                })
+                            slug: node.slug
+                        }
+                    });
+                });
 
                 // Pagination for posts, e.g., /, /page/2, /page/3
                 paginate({
@@ -64,29 +62,27 @@ exports.createPages = ({ graphql, actions }) => {
                     component: indexTemplate,
                     pathPrefix: ({ pageNumber }) => {
                         if (pageNumber === 0) {
-                            return `/`
+                            return `/`;
                         } else {
-                            return `/page`
+                            return `/page`;
                         }
-                    },
-                })
+                    }
+                });
 
-                return resolve()
+                return resolve();
             })
-        )
-    })
+        );
+    });
 
     /**
-    * Tags
-    */
+     * Tags
+     */
     const createTags = new Promise((resolve, reject) => {
-        const tagsTemplate = path.resolve(`./src/templates/tag.js`)
+        const tagsTemplate = path.resolve(`./src/templates/tag.js`);
         resolve(
             graphql(`
                 {
-                    allGhostTag(
-                        sort: {order: ASC, fields: name}
-                    ) {
+                    allGhostTag(sort: { order: ASC, fields: name }) {
                         edges {
                             node {
                                 slug
@@ -95,36 +91,50 @@ exports.createPages = ({ graphql, actions }) => {
                             }
                         }
                     }
-                }`
-            ).then((result) => {
+                }
+            `).then(result => {
                 if (result.errors) {
-                    return reject(result.errors)
+                    return reject(result.errors);
                 }
 
                 if (!result.data.allGhostTag) {
-                    return resolve()
+                    return resolve();
                 }
 
-                const items = result.data.allGhostTag.edges
-                const postsPerPage = config.postsPerPage
+                const items = result.data.allGhostTag.edges;
+                const postsPerPage = config.postsPerPage;
 
                 items.forEach(({ node }) => {
-                    const totalPosts = node.postCount !== null ? node.postCount : 0
-                    const numberOfPages = Math.ceil(totalPosts / postsPerPage)
+                    const totalPosts =
+                        node.postCount !== null ? node.postCount : 0;
+                    const numberOfPages = Math.ceil(totalPosts / postsPerPage);
 
                     // This part here defines, that our tag pages will use
                     // a `/tag/:slug/` permalink.
-                    node.url = `/tag/${node.slug}/`
+                    node.url = `/tag/${node.slug}/`;
 
                     Array.from({ length: numberOfPages }).forEach((_, i) => {
-                        const currentPage = i + 1
-                        const prevPageNumber = currentPage <= 1 ? null : currentPage - 1
-                        const nextPageNumber = currentPage + 1 > numberOfPages ? null : currentPage + 1
-                        const previousPagePath = prevPageNumber ? prevPageNumber === 1 ? node.url : `${node.url}page/${prevPageNumber}/` : null
-                        const nextPagePath = nextPageNumber ? `${node.url}page/${nextPageNumber}/` : null
+                        const currentPage = i + 1;
+                        const prevPageNumber =
+                            currentPage <= 1 ? null : currentPage - 1;
+                        const nextPageNumber =
+                            currentPage + 1 > numberOfPages
+                                ? null
+                                : currentPage + 1;
+                        const previousPagePath = prevPageNumber
+                            ? prevPageNumber === 1
+                                ? node.url
+                                : `${node.url}page/${prevPageNumber}/`
+                            : null;
+                        const nextPagePath = nextPageNumber
+                            ? `${node.url}page/${nextPageNumber}/`
+                            : null;
 
                         createPage({
-                            path: i === 0 ? node.url : `${node.url}page/${i + 1}/`,
+                            path:
+                                i === 0
+                                    ? node.url
+                                    : `${node.url}page/${i + 1}/`,
                             component: path.resolve(tagsTemplate),
                             context: {
                                 // Data passed to context is available
@@ -137,28 +147,26 @@ exports.createPages = ({ graphql, actions }) => {
                                 prevPageNumber: prevPageNumber,
                                 nextPageNumber: nextPageNumber,
                                 previousPagePath: previousPagePath,
-                                nextPagePath: nextPagePath,
-                            },
-                        })
-                    })
-                })
+                                nextPagePath: nextPagePath
+                            }
+                        });
+                    });
+                });
 
-                return resolve()
+                return resolve();
             })
-        )
-    })
+        );
+    });
 
     /**
-    * Authors
-    */
+     * Authors
+     */
     const createAuthors = new Promise((resolve, reject) => {
-        const authorTemplate = path.resolve(`./src/templates/author.js`)
+        const authorTemplate = path.resolve(`./src/templates/author.js`);
         resolve(
             graphql(`
                 {
-                    allGhostAuthor(
-                        sort: {order: ASC, fields: name}
-                    ) {
+                    allGhostAuthor(sort: { order: ASC, fields: name }) {
                         edges {
                             node {
                                 slug
@@ -167,36 +175,50 @@ exports.createPages = ({ graphql, actions }) => {
                             }
                         }
                     }
-                }`
-            ).then((result) => {
+                }
+            `).then(result => {
                 if (result.errors) {
-                    return reject(result.errors)
+                    return reject(result.errors);
                 }
 
                 if (!result.data.allGhostAuthor) {
-                    return resolve()
+                    return resolve();
                 }
 
-                const items = result.data.allGhostAuthor.edges
-                const postsPerPage = config.postsPerPage
+                const items = result.data.allGhostAuthor.edges;
+                const postsPerPage = config.postsPerPage;
 
                 items.forEach(({ node }) => {
-                    const totalPosts = node.postCount !== null ? node.postCount : 0
-                    const numberOfPages = Math.ceil(totalPosts / postsPerPage)
+                    const totalPosts =
+                        node.postCount !== null ? node.postCount : 0;
+                    const numberOfPages = Math.ceil(totalPosts / postsPerPage);
 
                     // This part here defines, that our author pages will use
                     // a `/author/:slug/` permalink.
-                    node.url = `/author/${node.slug}/`
+                    node.url = `/author/${node.slug}/`;
 
                     Array.from({ length: numberOfPages }).forEach((_, i) => {
-                        const currentPage = i + 1
-                        const prevPageNumber = currentPage <= 1 ? null : currentPage - 1
-                        const nextPageNumber = currentPage + 1 > numberOfPages ? null : currentPage + 1
-                        const previousPagePath = prevPageNumber ? prevPageNumber === 1 ? node.url : `${node.url}page/${prevPageNumber}/` : null
-                        const nextPagePath = nextPageNumber ? `${node.url}page/${nextPageNumber}/` : null
+                        const currentPage = i + 1;
+                        const prevPageNumber =
+                            currentPage <= 1 ? null : currentPage - 1;
+                        const nextPageNumber =
+                            currentPage + 1 > numberOfPages
+                                ? null
+                                : currentPage + 1;
+                        const previousPagePath = prevPageNumber
+                            ? prevPageNumber === 1
+                                ? node.url
+                                : `${node.url}page/${prevPageNumber}/`
+                            : null;
+                        const nextPagePath = nextPageNumber
+                            ? `${node.url}page/${nextPageNumber}/`
+                            : null;
 
                         createPage({
-                            path: i === 0 ? node.url : `${node.url}page/${i + 1}/`,
+                            path:
+                                i === 0
+                                    ? node.url
+                                    : `${node.url}page/${i + 1}/`,
                             component: path.resolve(authorTemplate),
                             context: {
                                 // Data passed to context is available
@@ -209,27 +231,25 @@ exports.createPages = ({ graphql, actions }) => {
                                 prevPageNumber: prevPageNumber,
                                 nextPageNumber: nextPageNumber,
                                 previousPagePath: previousPagePath,
-                                nextPagePath: nextPagePath,
-                            },
-                        })
-                    })
-                })
-                return resolve()
+                                nextPagePath: nextPagePath
+                            }
+                        });
+                    });
+                });
+                return resolve();
             })
-        )
-    })
+        );
+    });
 
     /**
-    * Pages
-    */
+     * Pages
+     */
     const createPages = new Promise((resolve, reject) => {
-        const pageTemplate = path.resolve(`./src/templates/page.js`)
+        const pageTemplate = path.resolve(`./src/templates/page.js`);
         resolve(
             graphql(`
                 {
-                    allGhostPage(
-                        sort: {order: ASC, fields: published_at}
-                    ) {
+                    allGhostPage(sort: { order: ASC, fields: published_at }) {
                         edges {
                             node {
                                 slug
@@ -237,22 +257,22 @@ exports.createPages = ({ graphql, actions }) => {
                             }
                         }
                     }
-                }`
-            ).then((result) => {
+                }
+            `).then(result => {
                 if (result.errors) {
-                    return reject(result.errors)
+                    return reject(result.errors);
                 }
 
                 if (!result.data.allGhostPage) {
-                    return resolve()
+                    return resolve();
                 }
 
-                const items = result.data.allGhostPage.edges
+                const items = result.data.allGhostPage.edges;
 
                 items.forEach(({ node }) => {
                     // This part here defines, that our pages will use
                     // a `/:slug/` permalink.
-                    node.url = `/${node.slug}/`
+                    node.url = `/${node.slug}/`;
 
                     createPage({
                         path: node.url,
@@ -260,27 +280,33 @@ exports.createPages = ({ graphql, actions }) => {
                         context: {
                             // Data passed to context is available
                             // in page queries as GraphQL variables.
-                            slug: node.slug,
-                        },
-                    })
-                })
+                            slug: node.slug
+                        }
+                    });
+                });
 
-                return resolve()
+                return resolve();
             })
-        )
-    })
+        );
+    });
 
-    return Promise.all([createPosts, createTags, createAuthors, createPages])
-}
+    return Promise.all([createPosts, createTags, createAuthors, createPages]);
+};
 
-exports.onCreateNode = async ({ node, actions, store, createNodeId, cache }) => {
+exports.onCreateNode = async ({
+    node,
+    actions,
+    store,
+    createNodeId,
+    cache
+}) => {
     // If the node is not GhostPost, we don't wanna do anything.
-    const nodeTypes = [`GhostPost`, `GhostPage`]
+    const nodeTypes = [`GhostPost`, `GhostPage`];
     if (!nodeTypes.includes(node.internal.type)) {
-        return
+        return;
     }
 
-    const { createNode } = actions
+    const { createNode } = actions;
 
     // Download image and create a File node with gatsby-transformer-sharp and
     // gatsby-plugin-sharp that node will become an ImageSharp.
@@ -290,11 +316,11 @@ exports.onCreateNode = async ({ node, actions, store, createNodeId, cache }) => 
         cache,
         createNode,
         parentNodeId: node.id,
-        createNodeId,
-    })
+        createNodeId
+    });
 
     if (fileNode) {
         // Link File node to GhostPost node at field image.
-        node.localFeatureImage___NODE = fileNode.id
+        node.localFeatureImage___NODE = fileNode.id;
     }
-}
+};

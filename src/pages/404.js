@@ -1,6 +1,6 @@
-import React from "react"
-import { Link } from "gatsby"
-import { LayoutContainer } from "../containers"
+import React from 'react';
+import { Link } from 'gatsby';
+import { LayoutContainer } from '../containers';
 
 const NotFoundPage = () => (
     <LayoutContainer>
@@ -9,6 +9,6 @@ const NotFoundPage = () => (
             Page not found, <Link to="/">return home</Link> to start over
         </section>
     </LayoutContainer>
-)
+);
 
-export default NotFoundPage
+export default NotFoundPage;
