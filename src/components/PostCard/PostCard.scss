@@ -47,9 +47,9 @@
 }
 
 .post-card__image {
-  max-width: 100%;
   opacity: 0.7;
+  left: 50%;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
 }
