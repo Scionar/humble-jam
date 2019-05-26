@@ -1,10 +1,8 @@
 # Humbe JAM :pray: :zap:
 
-JAM stack implementation of [Humble Ghost theme](https://github.com/Scionar/Humble).
+JAM stack implementation of [Humble Ghost theme](https://github.com/Scionar/Humble). This project is based on [Gastby Starter Ghost](https://github.com/tryghost/gatsby-starter-ghost). Thanks for their amazing work. Specially with meta data components.
 
-This project is based on [Gastby Starter Ghost](https://github.com/tryghost/gatsby-starter-ghost). Thanks for their amazing work. Specially with meta data components.
-
-**NOTE: This project is still on work.**
+This theme is in use at [joonaviertola.com](https://joonaviertola.com).
 
 ## Installing
 
@@ -51,5 +49,5 @@ Favicons are found under `/static/`.
 Start development server.
 
 ```
-gatsby develop
+yarn dev
 ```
