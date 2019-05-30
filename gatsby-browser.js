@@ -32,18 +32,21 @@ var trustAllScripts = function() {
 };
 
 var initDisqus = function() {
+    var disqusBlock = document.getElementById(`disqus-block`);
     if (process.env.GATSBY_DISQUS_SHORTNAME) {
-        var d = document,
-            s = d.createElement(`script`);
-        s.src =
-            `https://` +
-            process.env.GATSBY_DISQUS_SHORTNAME +
-            `.disqus.com/embed.js`;
-        s.setAttribute(`data-timestamp`, +new Date());
-        (d.head || d.body).appendChild(s);
+        // If there is no placeholder element, do not continue.
+        if (disqusBlock !== null) {
+            var d = document,
+                s = d.createElement(`script`);
+            s.src =
+                `https://` +
+                process.env.GATSBY_DISQUS_SHORTNAME +
+                `.disqus.com/embed.js`;
+            s.setAttribute(`data-timestamp`, +new Date());
+            (d.head || d.body).appendChild(s);
+        }
     } else {
         // Remove Disqus HTML block.
-        var disqusBlock = document.getElementById(`disqus-block`);
         if (disqusBlock !== null) {
             disqusBlock.parentNode.removeChild(disqusBlock);
         }
