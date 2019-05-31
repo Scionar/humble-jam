@@ -7,13 +7,16 @@
 
     // Override PrismJS theme styles
     pre[class*='language-'] {
-        background-color: transparent !important;
-        border-bottom: 1px solid $color__gallery;
-        border-top: 1px solid $color__gallery;
+        background-color: $color__catskill-white !important;
+        border-radius: 0.35rem;
         font-family: monospace !important;
         font-size: 0.78rem !important;
         margin: 2rem 0 !important;
-        padding: 1.5rem 0 !important;
+        padding: 1.5rem !important;
         overflow: auto;
+    }
+
+    .token.operator {
+        background: transparent !important;
     }
 }
