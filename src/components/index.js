@@ -3,7 +3,6 @@ export { default as Navigation } from './Navigation/Navigation';
 export { default as Layout } from './Layout/Layout';
 export { default as Footer } from './Footer/Footer';
 export { default as PostCard } from './PostCard/PostCard';
-export { default as FullPost } from './FullPost/FullPost';
 export { default as PostDate } from './PostDate/PostDate';
 export { default as PostHeroImage } from './PostHeroImage/PostHeroImage';
 export { default as PostContent } from './PostContent/PostContent';
