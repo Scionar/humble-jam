@@ -5,7 +5,7 @@ import Img from 'gatsby-image';
 import './PostHeroImage.scss';
 
 const PostHeroImage = ({ image, alt }) => (
-    <Img className="post-full__image" fluid={image} alt={alt} />
+    <Img className="post-hero-image" fluid={image} alt={alt} />
 );
 
 PostHeroImage.propTypes = {
