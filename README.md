@@ -6,6 +6,8 @@ This theme is in use at [joonaviertola.com](https://joonaviertola.com).
 
 ## Installing
 
+Please use node version v8.10.0. Some newer versions break on installing process.
+
 Install dependecies.
 
 ```
