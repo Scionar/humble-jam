@@ -70,7 +70,7 @@
     "lodash": "4.17.13",
     "moment": "^2.24.0",
     "node-sass": "^4.11.0",
-    "prismjs": "^1.16.0",
+    "prismjs": "^1.25.0",
     "react": "16.8.4",
     "react-dom": "16.8.4",
     "react-helmet": "5.2.0"
