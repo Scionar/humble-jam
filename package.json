@@ -69,7 +69,7 @@
     "gatsby-transformer-sharp": "2.1.16",
     "lodash": "4.17.13",
     "moment": "^2.24.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "prismjs": "^1.16.0",
     "react": "16.8.4",
     "react-dom": "16.8.4",
