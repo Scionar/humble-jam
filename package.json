@@ -68,7 +68,7 @@
     "gatsby-source-ghost": "3.4.2",
     "gatsby-transformer-sharp": "2.1.16",
     "lodash": "4.17.13",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "node-sass": "^4.11.0",
     "prismjs": "^1.16.0",
     "react": "16.8.4",
